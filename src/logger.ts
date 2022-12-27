@@ -1,7 +1,7 @@
 import chalk, { Chalk } from 'chalk';
 
 export function getBadage(label: string, style: Chalk): string {
-    return style.white(` ${label} `);
+    return style.bold.white(` ${label} `);
 }
 
 export function info(...args: string[]) {

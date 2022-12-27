@@ -12,4 +12,4 @@
 //     console.log(nonUser);
 // });
 
-test('空',()=>{})
+test('空', () => {});

@@ -55,17 +55,38 @@ export class AttackItem extends Item {
         this.metadata = md;
     }
 
-    async use(targetId: number): Promise<AttackItemUseResponse> {
+    /**
+     * 在生物上使用(攻击生物)
+     * @returns 生物影响
+     */
+    useOnMob(): AttackItemUseResponse {
         if (this.isInvalid()) return { success: false };
         var damage = this.getActualDamage(this.metadata.damage);
         var endurance = this.getActualEndurance(damage);
+        this.metadata.endurance -= endurance || 0;
+        return { success: true, damage, endurance };
+    }
+
+    /**
+     * 在玩家上使用(攻击玩家)
+     * @param targetId 目标玩家QQ号
+     * @returns 生物影响
+     */
+    async useOnPlayer(targetId: number): Promise<AttackItemUseResponse> {
+        var data = this.useOnMob();
+        if (!data.success) return data;
+
+        var { damage, endurance } = data;
 
         var targetUser = await getUserInfo(targetId);
-        targetUser.health -= damage;
+        targetUser.health -= damage || 0;
         updateUserInfo(targetUser);
-        this.metadata.endurance -= endurance;
 
-        return { success: true, damage, endurance };
+        return {
+            success: true,
+            damage: damage || 0,
+            endurance: endurance || 0,
+        };
     }
 
     /**

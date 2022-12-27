@@ -10,6 +10,7 @@
         "build": "tsc",
         "start": "node dist/main.js",
         "test": "jest",
+        "cover": "jest --coverage",
         "run": "ts-node src/main.ts"
     },
     "devDependencies": {

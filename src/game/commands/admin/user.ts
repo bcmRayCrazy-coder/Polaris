@@ -1,35 +1,39 @@
-import { getUserInfo, updateUserInfo } from "../../../db/controller/UserController";
-import { client } from "../../bot";
-import { info2text } from "../../lib";
-import { Command, CommandExecutor } from "../Command";
-import { adminCommandManager } from "./admin";
+import {
+    getUserInfo,
+    updateUserInfo,
+} from '../../../db/controller/UserController';
+import { client } from '../../bot';
+import { info2text } from '../../lib';
+import { Command, CommandExecutor } from '../Command';
+import { adminCommandManager } from './admin';
 
-class UserAdminCommand extends Command{
-    constructor(){
-        super("用户","关于用户的管理")
+class UserAdminCommand extends Command {
+    constructor() {
+        super('用户', '关于用户的管理');
     }
     async execute(args: string[], executor: CommandExecutor): Promise<boolean> {
-        if(args.length<1) {
-            client.sendGroupMsg(executor.groupId,this.help())
+        if (args.length < 1) {
+            client.sendGroupMsg(executor.groupId, this.help());
             return false;
         }
         switch (args[0]) {
             case '查看信息':
                 var info = await getUserInfo(Number.parseInt(args[1]));
-                if(!info) client.sendGroupMsg(executor.groupId,'用户不存在')
-                else client.sendGroupMsg(executor.groupId,info2text(info));
+                if (!info) client.sendGroupMsg(executor.groupId, '用户不存在');
+                else client.sendGroupMsg(executor.groupId, info2text(info));
                 break;
 
             case '修改信息':
-                if(args.length != 4) client.sendGroupMsg(executor.groupId,'语法错误');
+                if (args.length != 4)
+                    client.sendGroupMsg(executor.groupId, '语法错误');
                 var info = await getUserInfo(Number.parseInt(args[1]));
-                if(!info) client.sendGroupMsg(executor.groupId,'用户不存在')
+                if (!info) client.sendGroupMsg(executor.groupId, '用户不存在');
                 var target = args[3];
                 switch (args[2]) {
                     case '硬币':
                         info.coin = Number.parseInt(target);
                         break;
-                        
+
                     case '等级':
                         info.level = Number.parseInt(target);
                         break;
@@ -47,18 +51,18 @@ class UserAdminCommand extends Command{
                         break;
 
                     case '管理员':
-                        info.admin = (target == '是');
+                        info.admin = target == '是';
                         break;
-                
+
                     default:
                         break;
                 }
                 await updateUserInfo(info);
-                client.sendGroupMsg(executor.groupId,'修改成功!');
+                client.sendGroupMsg(executor.groupId, '修改成功!');
                 break;
-        
+
             default:
-                client.sendGroupMsg(executor.groupId,this.help())
+                client.sendGroupMsg(executor.groupId, this.help());
                 return false;
         }
         return true;

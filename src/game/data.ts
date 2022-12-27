@@ -1,4 +1,4 @@
-import { EnchantType, ItemType } from './items/Item';
+import { EnchantType, ItemType } from './items/ItemTypes';
 
 /**
  * 升级经验

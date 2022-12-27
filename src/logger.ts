@@ -5,17 +5,17 @@ export function getBadage(label: string, style: Chalk): string {
 }
 
 export function info(...args: string[]) {
-    console.log(getBadage('Info', chalk.bgCyan), args.join(' '));
+    console.log(getBadage('INFO', chalk.bgCyan), args.join(' '));
 }
 
 export function success(...args: string[]) {
-    console.log(getBadage('Success', chalk.bgGreen), args.join(' '));
+    console.log(getBadage('SUCCESS', chalk.bgGreen), args.join(' '));
 }
 
 export function warning(...args: string[]) {
-    console.log(getBadage('Warn', chalk.bgYellow), args.join(' '));
+    console.log(getBadage('WARN', chalk.bgYellow), args.join(' '));
 }
 
 export function error(...args: string[]) {
-    console.log(getBadage('Error', chalk.bgRed), args.join(' '));
+    console.log(getBadage('ERROR', chalk.bgRed), args.join(' '));
 }

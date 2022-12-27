@@ -67,12 +67,12 @@ export default async function () {
         });
     });
 
-    process.on('uncaughtException',(err,origin)=>{
-        error('出现错误:',err.name);
+    process.on('uncaughtException', (err, origin) => {
+        error('出现错误:', err.name);
         error(err.message);
         error('错误Stack:');
         error(err.stack || '无法解析stack');
         error('错误origin:');
         error(origin);
-    })
+    });
 }

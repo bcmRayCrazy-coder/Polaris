@@ -10,7 +10,10 @@ export async function getUserInfo(id: number): Promise<UsersTable> {
 
 export async function addUser(id: number, name: string): Promise<UsersTable> {
     var admin = false;
-    if (botConfig.adminId.includes(id)) {admin = true;info('发现管理员',id.toString(),'已自动将ta设置为管理!')};
+    if (botConfig.adminId.includes(id)) {
+        admin = true;
+        info('发现管理员', id.toString(), '已自动将ta设置为管理!');
+    }
     if (!(await getUserInfo(id))) {
         await connection(Tables.Users).insert({ id, name, admin });
     }

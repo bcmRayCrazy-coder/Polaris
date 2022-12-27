@@ -18,7 +18,7 @@ export interface BotConfig {
 const config: BotConfig = {
     account: 257139787,
     validGroup: [678422707, 134179324],
-    adminId: [975875040,2979893134],
+    adminId: [975875040, 2979893134],
 };
 
 export default config;

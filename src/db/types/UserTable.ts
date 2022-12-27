@@ -10,6 +10,11 @@ export interface UsersTable {
     name: string;
 
     /**
+     * 健康值
+     */
+    health: number;
+
+    /**
      * 硬币
      */
     coin: number;
@@ -35,8 +40,6 @@ export interface UsersTable {
 
     /**
      * 是否是管理员
-     * 0:不是
-     * 1:是
      */
-    admin: number;
+    admin: boolean;
 }

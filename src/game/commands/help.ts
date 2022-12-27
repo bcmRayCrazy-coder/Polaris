@@ -6,7 +6,7 @@ class HelpCommand extends Command {
     constructor() {
         super('', '帮助文档');
     }
-    execute(args: string[], executor: CommandExecutor): boolean {
+    async execute(args: string[], executor: CommandExecutor): Promise<boolean> {
         client.sendGroupMsg(
             executor.groupId,
             `帮助文档

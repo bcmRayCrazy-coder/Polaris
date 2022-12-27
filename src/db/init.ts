@@ -21,6 +21,7 @@ export default async function () {
         builder.integer('id');
         builder.string('name');
         builder.integer('coin').defaultTo(0);
+        builder.integer('health').defaultTo(100);
         builder.integer('level').defaultTo(0);
         builder.integer('exp').defaultTo(0);
         builder.integer('vip').defaultTo(0);
@@ -31,6 +32,18 @@ export default async function () {
         builder.integer('year');
         builder.integer('month');
         builder.integer('day');
+    });
+    await initTable(Tables.Treasures, (builder) => {
+        builder.increments('id');
+        builder.integer('owner');
+        builder.integer('level');
+    });
+    await initTable(Tables.Items, (builder) => {
+        builder.string('hash');
+        builder.integer('owner');
+        builder.string('id');
+        builder.string('name');
+        builder.json('metadata');
     });
     info('初始化数据库完成');
 }

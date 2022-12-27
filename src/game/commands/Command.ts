@@ -31,7 +31,14 @@ export class Command {
         this.description = description;
     }
 
-    execute(args: string[], executor: CommandExecutor): boolean {
+    async beforeExecute(
+        args: string[],
+        executor: CommandExecutor
+    ): Promise<boolean> {
+        return true;
+    }
+
+    async execute(args: string[], executor: CommandExecutor): Promise<boolean> {
         return false;
     }
 
@@ -50,9 +57,12 @@ export class CommandManager {
         this.commands[command.name] = command;
     }
 
-    execute(name: string, args: string[], executor: CommandExecutor) {
+    async execute(name: string, args: string[], executor: CommandExecutor) {
         if (name in this.commands) {
-            var suc = this.commands[name].execute(args, executor);
+            var cmd = this.commands[name];
+            var suc = await cmd.beforeExecute(args, executor);
+            if (!suc) return;
+            suc = await cmd.execute(args, executor);
             this.onCommandBack(name, args, suc, executor);
         } else {
             this.onCommandNotFound(name, args, executor);

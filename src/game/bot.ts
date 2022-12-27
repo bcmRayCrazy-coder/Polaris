@@ -1,7 +1,7 @@
 import { createClient } from 'oicq';
 import botConfig from '../bot.config';
 import { addUser, getUserInfo } from '../db/controller/UserController';
-import { info, success } from '../logger';
+import { error, info, success } from '../logger';
 import { commandManager } from './commands/CommandManager';
 import { info2text } from './lib';
 
@@ -37,7 +37,7 @@ export default async function () {
         event.approve(true);
     });
 
-    client.on('message.group', async (event) => {
+    client.on('message.group.normal', async (event) => {
         if (!botConfig.validGroup.includes(event.group_id)) return;
         if (
             !(
@@ -66,4 +66,13 @@ export default async function () {
             groupId: event.group_id,
         });
     });
+
+    process.on('uncaughtException',(err,origin)=>{
+        error('出现错误:',err.name);
+        error(err.message);
+        error('错误Stack:');
+        error(err.stack || '无法解析stack');
+        error('错误origin:');
+        error(origin);
+    })
 }

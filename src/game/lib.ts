@@ -11,5 +11,9 @@ export function info2text(info: UsersTable) {
 硬币: ${info.coin}
 经验: ${info.exp} / ${levelUpExp[info.level]}
 等级: ${info.level}
-称号: ${tag2text(vipName[info.vip], info.admin == 1 ? '管理员' : undefined)}`;
+称号: ${tag2text(vipName[info.vip], info.admin ? '管理员' : undefined)}`;
+}
+
+export function connect2id(...text: string[]): string {
+    return text.join('.');
 }

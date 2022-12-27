@@ -3,4 +3,5 @@ export enum Tables {
     Signin = 'signin',
     Treasures = 'treasures',
     Items = 'items',
+    Afk = 'afk'
 }

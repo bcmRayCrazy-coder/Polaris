@@ -1,5 +1,5 @@
 import { info, warning } from '../logger';
-import { Knex } from 'knex';
+import knex, { Knex } from 'knex';
 import { connection } from './connect';
 import { Tables } from './tables';
 
@@ -45,5 +45,9 @@ export default async function () {
         builder.string('name');
         builder.json('metadata');
     });
+    await initTable(Tables.Afk,(builder)=>{
+        builder.integer('id');
+        builder.timestamp('time').defaultTo(connection.fn.now());
+    })
     info('初始化数据库完成');
 }

@@ -45,9 +45,9 @@ export default async function () {
         builder.string('name');
         builder.json('metadata');
     });
-    await initTable(Tables.Afk,(builder)=>{
+    await initTable(Tables.Afk, (builder) => {
         builder.integer('id');
         builder.timestamp('time').defaultTo(connection.fn.now());
-    })
+    });
     info('初始化数据库完成');
 }

@@ -27,3 +27,4 @@ import './signin';
 import './help';
 import './me';
 import './admin/admin';
+import './afk';

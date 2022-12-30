@@ -1,4 +1,9 @@
-import { getAfkData, isAfk, startAfk, stopAfk } from '../../db/controller/AfkController';
+import {
+    getAfkData,
+    isAfk,
+    startAfk,
+    stopAfk,
+} from '../../db/controller/AfkController';
 import {
     getUserInfo,
     updateUserInfo,
@@ -24,11 +29,11 @@ class AfkCommand extends Command {
                 );
                 return true;
             }
-            var afkData = await startAfk(executor.id);
-            var startTime = new Date(afkData.time);
+            await startAfk(executor.id);
+            var startTime = new Date();
             client.sendGroupMsg(
                 executor.groupId,
-                `您在 ${startTime.toUTCString()} 开始了休息`
+                `您在 ${startTime.toLocaleString()} 开始了休息, 结束休息请输入 #休息 结束`
             );
             return true;
         } else {
@@ -54,7 +59,7 @@ class AfkCommand extends Command {
                 client.sendGroupMsg(
                     executor.groupId,
                     `休息结束!
-您本次休息了 ${passedMinutes} 分钟(从 ${startTime.toUTCString()} 开始休息)
+您本次休息了 ${passedMinutes} 分钟(从 ${startTime.toLocaleTimeString()} 开始休息)
 本次休息获得 ${exp.toString()} 经验, 您目前有 ${userInfo.exp} 经验`
                 );
                 return true;
@@ -72,7 +77,9 @@ class AfkCommand extends Command {
                     (Date.now() - startTime.getTime()) / 1000 / 60;
                 client.sendGroupMsg(
                     executor.groupId,
-                    `您已经休息了 ${passedMinutes} 分钟(从 ${startTime.toUTCString()} 开始休息), 预计获得 ${getExp(
+                    `您已经休息了 ${Math.floor(
+                        passedMinutes
+                    )} 分钟(从 ${startTime.toLocaleDateString()} 开始休息), 预计获得 ${getExp(
                         passedMinutes
                     ).toString()} 经验`
                 );

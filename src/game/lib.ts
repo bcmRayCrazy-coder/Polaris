@@ -17,3 +17,10 @@ export function info2text(info: UsersTable) {
 export function connect2id(...text: string[]): string {
     return text.join('.');
 }
+
+export function getHash(): string {
+    return (
+        Math.random().toString(36).slice(-8) +
+        Math.random().toString(36).slice(-8)
+    );
+}

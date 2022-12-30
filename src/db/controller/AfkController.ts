@@ -3,7 +3,7 @@ import { Tables } from '../tables';
 import { AfkTable } from '../types/AfkTable';
 
 export async function startAfk(id: number): Promise<AfkTable> {
-    return await connection(Tables.Afk).insert({ id,time:Date.now() });
+    return await connection(Tables.Afk).insert({ id, time: Date.now() });
 }
 
 export async function getAfkData(id: number): Promise<AfkTable> {

@@ -33,3 +33,20 @@ export let enchantTypeName: Record<string, string> = {
     [EnchantType.Endurance]: '耐久',
     [EnchantType.Sharpness]: '锋利',
 };
+
+/**
+ * Mob称呼
+ */
+export let mobName: Record<string, string> = {
+    // 僵尸
+    'mob.zombie.normal': '普通僵尸',
+    'mob.zombie.advanced': '进阶僵尸',
+    'mob.zombie.high': '高级僵尸',
+    'mob.zombie.super': '超级僵尸',
+    // 铁怪
+    'mob.iron.small': '小铁怪',
+    'mob.iron.medium': '中铁怪',
+    'mob.iron.big': '大铁怪',
+    // boss
+    'mob.boss.iron': '铁怪boss',
+};

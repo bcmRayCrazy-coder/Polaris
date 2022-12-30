@@ -32,9 +32,10 @@ export default async function () {
     //     client.sendGroupMsg(gid,"Hi");
     // })
 
-    client.on('request.group.invite', (event) => {
+    client.on('request.group.invite', async (event) => {
         info('收到加群请求', '群名:', event.group_name);
-        event.approve(true);
+        await event.approve(true);
+        success('请求已同意');
     });
 
     client.on('message.group.normal', async (event) => {

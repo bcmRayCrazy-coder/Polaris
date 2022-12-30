@@ -12,6 +12,7 @@ class HelpCommand extends Command {
             `帮助文档
 #       - 显示帮助
 #签到   - 每日签到
+#休息   - 休息得经验
 #我     - 查看个人信息`
         );
         return true;

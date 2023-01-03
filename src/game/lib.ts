@@ -1,5 +1,6 @@
 import { UsersTable } from '../db/types/UserTable';
 import { levelUpExp, vipName } from './data';
+import botConfig from '../bot.config';
 
 export function tag2text(...tags: (string | undefined)[]): string {
     return tags.map((v) => (v ? `[${v}]` : undefined)).join('');
@@ -23,4 +24,12 @@ export function getHash(): string {
         Math.random().toString(36).slice(-8) +
         Math.random().toString(36).slice(-8)
     );
+}
+
+export function getPage<T>(
+    page: number,
+    items: T[],
+    pageLength: number = botConfig.itemsPerPage
+): T[] {
+    return items.slice((page - 1) * pageLength, page * pageLength);
 }

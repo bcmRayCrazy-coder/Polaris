@@ -17,10 +17,10 @@ import {
 export class Item {
     id: string;
     name: string;
-    metadata: Object;
+    metadata: any;
     type: ItemType;
 
-    constructor(id: string, name: string, type: ItemType, metadata?: Object) {
+    constructor(id: string, name: string, type: ItemType, metadata?: any) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -31,7 +31,7 @@ export class Item {
      * 获取用于存储在数据库的物品metadata
      * @returns 物品metadata
      */
-    getItemMetadata(): Object {
+    getItemMetadata(): any {
         return {
             type: this.type,
             ...this.metadata,

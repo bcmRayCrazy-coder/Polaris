@@ -10,7 +10,6 @@ class ViewBackpackCommand extends Command {
     async execute(args: string[], executor: CommandExecutor): Promise<boolean> {
         if (args.length > 1) return false;
 
-        var itemsPerPage = botConfig.itemsPerPage;
         var items: ItemTable[] = await getUserItems(executor.id);
         if (args.length == 1) {
             var page = parseInt(args[0]);

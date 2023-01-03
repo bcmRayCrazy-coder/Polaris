@@ -2,15 +2,21 @@ import {
     EnduranceEnchantItem,
     SharpnessEnchantItem,
 } from '../game/items/enchantItems';
-import { GoldenSwordAttackItem, IronBlockAttackItem, PencilAttackItem, StoneAttackItem, StoneSwordAttackItem } from '../game/items/attackItems';
+import {
+    GoldenSwordAttackItem,
+    IronBlockAttackItem,
+    PencilAttackItem,
+    StoneAttackItem,
+    StoneSwordAttackItem,
+} from '../game/items/attackItems';
 
-test('全物品创建',()=>{
+test('全物品创建', () => {
     new StoneAttackItem();
     new StoneSwordAttackItem();
     new GoldenSwordAttackItem();
     new PencilAttackItem();
     new IronBlockAttackItem();
-})
+});
 
 test('附魔物品创建', () => {
     var sharpness1 = new SharpnessEnchantItem(1);
@@ -19,7 +25,7 @@ test('附魔物品创建', () => {
     console.log('锋利1:', sharpness1);
     console.log('锋利5:', sharpness5);
     console.log('耐久2:', endurance2);
-    console.log('锋利1的metadata:',sharpness1.getItemMetadata());
+    console.log('锋利1的metadata:', sharpness1.getItemMetadata());
 });
 test('攻击物品创建并使用', () => {
     var attack = new IronBlockAttackItem();

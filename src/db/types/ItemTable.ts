@@ -22,5 +22,5 @@ export interface ItemTable {
     /**
      * 物品附加数据
      */
-    metadata: Object;
+    metadata: any;
 }

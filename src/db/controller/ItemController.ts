@@ -6,7 +6,7 @@ import { ItemTable } from '../types/ItemTable';
 export async function addItem(
     owner: number,
     id: string,
-    metadata?: Object,
+    metadata?: any,
     name?: string
 ): Promise<string> {
     var hash: string = getHash();

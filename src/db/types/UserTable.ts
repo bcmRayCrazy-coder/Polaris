@@ -36,7 +36,7 @@ export interface UsersTable {
      * 2:高级VIP    ( 40 <= x <= 100)
      * 3:尊贵VIP    ( x < 100 )
      */
-    vip: number;
+    vip: 0 | 1 | 2 | 3;
 
     /**
      * 是否是管理员

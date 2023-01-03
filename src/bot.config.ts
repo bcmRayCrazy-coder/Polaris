@@ -23,7 +23,7 @@ export interface BotConfig {
 const config: BotConfig = {
     account: 257139787,
     validGroup: [678422707, 134179324, 476581286],
-    adminId: [975875040, 2979893134],
+    adminId: [975875040, 2979893134, /**测试用户管理员 */ 114514],
     itemsPerPage: 10,
 };
 

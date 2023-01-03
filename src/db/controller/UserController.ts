@@ -23,3 +23,7 @@ export async function addUser(id: number, name: string): Promise<UsersTable> {
 export async function updateUserInfo(info: UsersTable) {
     await connection(Tables.Users).where({ id: info.id }).update(info);
 }
+
+export async function deleteUser(id: number) {
+    await connection(Tables.Users).where({ id }).delete();
+}

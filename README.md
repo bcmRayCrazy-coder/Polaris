@@ -6,4 +6,4 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 ![node version: > 14.10.0](https://img.shields.io/badge/node%20version-%3E%2014.10.0-yellowgreen)
 ![typescript version: > 4.6.0](https://img.shields.io/badge/typescript%20version-%3E%204.6.0-blue)
-![coverage: 71.64%](https://img.shields.io/badge/coverage-71.64%25-yellowgreen)
+![coverage: 71.64%](https://img.shields.io/badge/coverage-86.66%25-green)

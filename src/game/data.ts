@@ -7,9 +7,14 @@ import { EnchantType, ItemType } from './items/ItemTypes';
 export let levelUpExp: number[] = [50, 100, 100, 250, 500, 1000, 1000, 2000];
 
 /**
+ * 等级称号
+ */
+export let levelName:string[] = ['练习生','实习探险家','新探险家','探险家','经验探险家','富有经验的探险家','探险大佬','北极之星'];
+
+/**
  * VIP等级称呼
  */
-export let vipName: string[] = ['探险家', 'VIP', '--SVIP--', '====超级VIP===='];
+export let vipName: string[] = ['普通探险家', 'VIP', '--SVIP--', '====超级VIP===='];
 
 /**
  * VIP签到加成

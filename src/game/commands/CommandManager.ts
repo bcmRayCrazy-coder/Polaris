@@ -1,6 +1,6 @@
 import { client } from '../bot';
 import { CommandExecutor, CommandManager } from './Command';
-import { success } from '../../logger';
+import { error, success } from '../../logger';
 
 export let commandManager = new CommandManager();
 commandManager.onCommandBack = (
@@ -25,10 +25,22 @@ commandManager.onCommandNotFound = (
 };
 
 // 加载插件
-import './signin';
-import './help';
-import './me';
-import './admin/admin';
-import './afk';
-import './backpack/backpack';
-success('插件加载完毕!');
+var plugins = [
+    './signin',
+    './help',
+    './me',
+    './admin/admin',
+    './afk',
+    './backpack/backpack',
+    './other',
+];
+plugins.forEach((pluginPath) => {
+    import(pluginPath)
+        .then(() => {
+            success(`插件 ${pluginPath} 加载完成`);
+        })
+        .catch((err) => {
+            error('插件加载出错,错误信息:');
+            console.error(err);
+        });
+});

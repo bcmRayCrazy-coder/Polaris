@@ -1,5 +1,5 @@
 import { UsersTable } from '../db/types/UserTable';
-import { levelUpExp, vipName } from './data';
+import { levelName, levelUpExp, vipName } from './data';
 import botConfig from '../bot.config';
 import { ItemTable } from '../db/types/ItemTable';
 import { Item } from './items/Item';
@@ -25,7 +25,11 @@ export function info2text(info: UsersTable) {
 硬币: ${info.coin}
 经验: ${info.exp} / ${levelUpExp[info.level]}
 等级: ${info.level}
-称号: ${tag2text(vipName[info.vip], info.admin ? '管理员' : undefined)}`;
+称号: ${tag2text(
+        levelName[info.level],
+        info.vip != 0 ? vipName[info.vip] : undefined,
+        info.admin ? '管理员' : undefined
+    )}`;
 }
 
 /**

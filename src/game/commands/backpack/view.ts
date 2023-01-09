@@ -6,6 +6,7 @@ import { getPage, table2item } from '../../lib';
 import { Item } from '../../items/Item';
 import { client } from '../../bot';
 import { segment } from 'oicq';
+import { backpackCommandManager } from './backpack';
 
 class ViewBackpackCommand extends Command {
     constructor() {
@@ -29,7 +30,7 @@ class ViewBackpackCommand extends Command {
         }
         var pageItem = getPage(page, items);
 
-        var txt = segment.at(executor.id) + '的物品列表';
+        var txt = ' 的物品列表';
         pageItem.forEach((v) => {
             txt += '\n';
             txt += `${v.name}`;
@@ -39,7 +40,10 @@ class ViewBackpackCommand extends Command {
             items.length / botConfig.itemsPerPage
         )} 页, 翻页请用 #背包 查看 ${page + 1}`;
 
-        client.sendGroupMsg(executor.groupId, txt);
+        client.sendGroupMsg(executor.groupId, [
+            segment.at(executor.id, executor.name, false),
+            txt,
+        ]);
 
         return true;
     }
@@ -50,3 +54,5 @@ class ViewBackpackCommand extends Command {
 查看背包第2页物品: #背包 查看 2`;
     }
 }
+
+backpackCommandManager.register(new ViewBackpackCommand());

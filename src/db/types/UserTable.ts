@@ -30,13 +30,14 @@ export interface UsersTable {
     exp: number;
 
     /**
-     * VIP等级
-     * 0:非VIP  ( x = 0 )
-     * 1:普通VIP    ( x < 40 )
-     * 2:高级VIP    ( 40 <= x <= 100)
-     * 3:尊贵VIP    ( x < 100 )
+     * VIP等级  
+     * 
+     * 0:非VIP     ( x = 0 )  
+     * 1:普通VIP    ( x < 40 )  
+     * 2:高级VIP    ( 40 <= x <= 100)  
+     * 3:尊贵VIP    ( x < 100 )  
      */
-    vip: 0 | 1 | 2 | 3;
+    vip: number;
 
     /**
      * 是否是管理员

@@ -4,5 +4,5 @@ export enum Tables {
     Treasures = 'treasures',
     Items = 'items',
     Afk = 'afk',
-    Locations = 'Locations'
+    Locations = 'Locations',
 }

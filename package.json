@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "chalk": "4",
+        "jimp": "^0.16.2",
         "knex": "^2.3.0",
         "oicq": "^2.3.1",
         "sqlite3": "^5.1.4"

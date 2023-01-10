@@ -1,9 +1,12 @@
+import { readFile, writeFile } from 'fs/promises';
+import path from 'path';
 import { ItemTable } from '../db/types/ItemTable';
 import { UsersTable } from '../db/types/UserTable';
 import { IronBlockAttackItem } from '../game/items/attackItems';
 import { EnduranceEnchantItem } from '../game/items/enchantItems';
 import {
     connect2id,
+    createTextImage,
     getHash,
     getPage,
     info2text,
@@ -70,4 +73,19 @@ test('还原item', () => {
     console.log('结果:', item);
     console.log('附魔数据:', item.metadata.enchants || '空');
     expect(item.getItemMetadata()).toStrictEqual(targetItem.getItemMetadata());
+});
+
+test('文字转图片', async () => {
+    var originData =
+        '北极Polaris测试文字' +
+        '北极地图主营东郊区西南铁城练习生实探险家经验富有的大佬之星普通超级攻击食物道具附魔耐久锋利僵尸进阶高小怪中欢迎来到菜单我签到休息位置指令帮助片骰子语音石头剪刀布管理查看显示个人信修改'
+            .split('')
+            .map((v, i) => (i % 32 == 0 ? '\n' + v : v))
+            .join('');
+    console.log('原始数据:', originData);
+    await writeFile(
+        path.resolve('./src/font/tests/result.txt'),
+        await createTextImage(originData)
+    );
+    console.log('结果已经输出在 ./src/font/tests/result.txt 中');
 });

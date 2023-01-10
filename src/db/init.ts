@@ -49,10 +49,10 @@ export default async function () {
         builder.integer('id');
         builder.timestamp('time').defaultTo(connection.fn.now());
     });
-    await initTable(Tables.Locations,(builder)=>{
+    await initTable(Tables.Locations, (builder) => {
         builder.string('hash');
         builder.string('location');
-        builder.integer('id')
-    })
+        builder.integer('id');
+    });
     info('初始化数据库完成');
 }

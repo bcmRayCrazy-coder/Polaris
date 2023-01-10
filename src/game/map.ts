@@ -3,8 +3,8 @@
  * 包括地图中的怪物都在这里声明
  */
 
-import { Mob } from "./mobs/Mob";
-import { MobList } from "./mobs/MobList";
+import { Mob } from './mobs/Mob';
+import { MobList } from './mobs/MobList';
 
 /**
  * 位置枚举
@@ -27,9 +27,9 @@ export enum Locations {
  */
 export let locationName: Record<Locations, string> = {
     [Locations.lobby]: '主营地',
-    [Locations.lobbySuburbsEast]: "主营地东郊区",
-    [Locations.lobbySuburbsWest]: "主营地西郊区",
-    [Locations.lobbySuburbsSouth]: "主营地南郊区",
+    [Locations.lobbySuburbsEast]: '主营地东郊区',
+    [Locations.lobbySuburbsWest]: '主营地西郊区',
+    [Locations.lobbySuburbsSouth]: '主营地南郊区',
     [Locations.ironCity]: '铁城',
     [Locations.ironSuburbsEast]: '铁城东郊区',
 };
@@ -47,11 +47,22 @@ export let locationDistance: Record<Locations, number> = {
     [Locations.ironSuburbsEast]: 5,
 };
 
-export let locationMobs: Record<Locations,typeof Mob[]> = {
+export let locationMobs: Record<Locations, typeof Mob[]> = {
     [Locations.lobby]: [],
-    [Locations.lobbySuburbsEast]: [MobList['zombieNormal'],MobList['zombieNormal'],MobList['zombieAdvanced']],
-    [Locations.lobbySuburbsWest]: [MobList['zombieNormal'],MobList['zombieNormal']],
-    [Locations.lobbySuburbsSouth]: [MobList['zombieNormal'],MobList['zombieNormal'],MobList['zombieHigh']],
+    [Locations.lobbySuburbsEast]: [
+        MobList['zombieNormal'],
+        MobList['zombieNormal'],
+        MobList['zombieAdvanced'],
+    ],
+    [Locations.lobbySuburbsWest]: [
+        MobList['zombieNormal'],
+        MobList['zombieNormal'],
+    ],
+    [Locations.lobbySuburbsSouth]: [
+        MobList['zombieNormal'],
+        MobList['zombieNormal'],
+        MobList['zombieHigh'],
+    ],
     [Locations.ironCity]: [],
     [Locations.ironSuburbsEast]: [],
-}
+};

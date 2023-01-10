@@ -39,4 +39,4 @@ class LocationCommand extends Command {
 
 commandManager.register(new LocationCommand());
 
-success('地图 子插件初始化完成')
+success('地图 子插件初始化完成');

@@ -4,6 +4,8 @@ import botConfig from '../bot.config';
 import { ItemTable } from '../db/types/ItemTable';
 import { Item } from './items/Item';
 import { warning } from '../logger';
+import Jimp from 'jimp';
+import path from 'path';
 
 /**
  * 将多个标签转为标签文字
@@ -80,4 +82,59 @@ export function table2item(table: ItemTable): Item {
         table.metadata
     );
     return item;
+}
+
+export async function createTextImage(content: string): Promise<string> {
+    function createImage(
+        width: number,
+        height: number,
+        color: number
+    ): Promise<Jimp> {
+        return new Promise((res, rej) => {
+            new Jimp(width, height, (err, img) => {
+                if (err) rej(err);
+                img.background(color, (err, img) => {
+                    if (err) rej(err);
+                    res(img);
+                });
+            });
+        });
+    }
+
+    // 使用字体显示
+    var font = await Jimp.loadFont(path.resolve('./src/font/polaris_ping.fnt'));
+    console.log(font.info);
+    var texts = content.split('\n');
+
+    // 图片大小
+    var width = 0;
+    var height = 0;
+
+    for (let i = 0; i < texts.length; i++) {
+        const t = texts[i];
+        // 字体大小
+        var fontWidth = Jimp.measureText(font, t);
+        var fontHeight = Jimp.measureTextHeight(font, t, fontWidth);
+
+        if (width < fontWidth) width = fontWidth;
+        height += fontHeight;
+    }
+
+    // 生成图片
+    var img = await createImage(width + 10, height + 10, 0xffffff);
+
+    // 当前写入文字的y
+    var currentHeight = 0;
+
+    for (let i = 0; i < texts.length; i++) {
+        const t = texts[i];
+        img.print(font, 0, currentHeight, t);
+        currentHeight += Jimp.measureTextHeight(
+            font,
+            t,
+            Jimp.measureText(font, t)
+        );
+    }
+
+    return await img.getBase64Async(Jimp.MIME_PNG);
 }

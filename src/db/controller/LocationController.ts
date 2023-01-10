@@ -1,15 +1,19 @@
-import { getHash } from "../../game/lib";
-import { Locations } from "../../game/map";
-import { connection } from "../connect";
-import { Tables } from "../tables";
-import { LocationTable } from "../types/LocationTable";
+import { getHash } from '../../game/lib';
+import { Locations } from '../../game/map';
+import { connection } from '../connect';
+import { Tables } from '../tables';
+import { LocationTable } from '../types/LocationTable';
 
 /**
  * 初始化用户位置
  * @param id 用户id
  */
-export async function initUserLocation(id:number) {
-    await connection(Tables.Locations).insert({hash:getHash(),id,location:Locations.lobby})
+export async function initUserLocation(id: number) {
+    await connection(Tables.Locations).insert({
+        hash: getHash(),
+        id,
+        location: Locations.lobby,
+    });
 }
 
 /**
@@ -17,8 +21,8 @@ export async function initUserLocation(id:number) {
  * @param id 用户id
  * @returns 用户位置
  */
-export async function getUserLocation(id:number):Promise<LocationTable>{
-    return (await connection.select().where({id}).from(Tables.Locations))[0];
+export async function getUserLocation(id: number): Promise<LocationTable> {
+    return (await connection.select().where({ id }).from(Tables.Locations))[0];
 }
 
 /**
@@ -26,6 +30,8 @@ export async function getUserLocation(id:number):Promise<LocationTable>{
  * @param location 位置
  * @returns 在该位置的所有用户位置信息
  */
-export async function getLocationUsers(location:Locations):Promise<LocationTable[]>{
-    return await connection.select().where({location}).from(Tables.Locations);
+export async function getLocationUsers(
+    location: Locations
+): Promise<LocationTable[]> {
+    return await connection.select().where({ location }).from(Tables.Locations);
 }
